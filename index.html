@@ -661,9 +661,14 @@
             // Ambil 5 data terbaru
             const recentFeeds = feeds.slice(-5).reverse();
             
-            recentFeeds.forEach(feed => {
-                const row = document.createElement('tr');
-                const time = new Date(feed.created_at);
+           recentFeeds.forEach(feed => {
+    row.innerHTML = `
+        <td>${formatTime(time)}</td>
+        <td>${feed.field1 || '-'}</td>  // Frekuensi Getaran (Field 1)
+        <td>${feed.field2 || '-'}</td>  // Frekuensi Pengusiran (Field 2)
+        <td>${feed.field5 ? feed.field5 + '%' : '-'}</td>  // Probabilitas Hama (Field 5)
+    `;
+});
                 
                 row.innerHTML = `
                     <td>${formatTime(time)}<br><small>${formatDate(time)}</small></td>
